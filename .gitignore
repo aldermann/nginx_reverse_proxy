@@ -2,3 +2,4 @@
 .idea
 *.pem
 node_modules
+build

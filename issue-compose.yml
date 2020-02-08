@@ -1,0 +1,28 @@
+version: "3"
+services:
+  nginx_issue:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx_issue:/etc/nginx/conf.d
+      - ./config/certbot/conf:/etc/letsencrypt
+      - ./config/certbot/www:/var/www/certbot
+
+  certbot_issue:
+    image: certbot/certbot
+    volumes:
+      - ./config/certbot/conf:/etc/letsencrypt
+      - ./config/certbot/www:/var/www/certbot
+    depends_on:
+      - nginx_issue
+    command: >
+      certonly --webroot --webroot-path=/var/www/certbot --email trancongvietan22@gmail.com 
+      --agree-tos --no-eff-email --force-renew -d www.rudias.asia
+
+  certbot_renew:
+    image: certbot/certbot
+    volumes:
+      - ./config/certbot/conf:/etc/letsencrypt
+      - ./config/certbot/www:/var/www/certbot
+    command: renew 

@@ -2,13 +2,20 @@
   "name": "korama-server",
   "version": "1.0.0",
   "description": "Korama Server using KeystoneJS",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://bitbucket.org/korama/rudias-server.git",
   "author": "trancongvietan22@gmail.com",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@keystonejs/adapter-mongoose": "^5.1.5",
+    "@keystonejs/app-graphql": "^5.0.3",
+    "@keystonejs/app-static": "^5.0.0",
+    "@keystonejs/fields": "^6.2.2",
     "@keystonejs/keystone": "^5.4.3"
+  },
+  "scripts": {
+    "start:dev": "keystone --entry=src/index.js --port=8000",
+    "build": "keystone build --out=build --entry=src/index.js"
   }
 }

@@ -5,26 +5,6 @@ services:
       - "8000:8000"
     image: crccheck/hello-world
 
-  nginx_issue:
-    image: nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./config/nginx_issue:/etc/nginx/conf.d
-      - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
-
-  certbot_issue:
-    image: certbot/certbot
-    volumes:
-      - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
-    depends_on:
-      - nginx_issue
-    command: >
-      certonly --webroot --webroot-path=/var/www/certbot --email trancongvietan22@gmail.com 
-      --agree-tos --no-eff-email --force-renew -d www.rudias.asia
-
   nginx:
     image: nginx
     ports:
@@ -35,9 +15,20 @@ services:
       - ./config/certbot/conf:/etc/letsencrypt
       - ./config/certbot/www:/var/www/certbot
 
-  certbot_renew:
-    image: certbot/certbot
-    volumes:
-      - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
-    command: renew 
+  keystone:
+    ports: 
+      - 8000:8000
+    build:
+      dockerfile: Dockerfile
+      image: korama_keystone:dev
+    depends_on: 
+      - mongo
+    entrypoint: 
+      /bin/sh
+    command: 
+      -c "MONGO_URI=mongodb://mongo:27017 yarn start:dev"
+  
+  mongo:
+    ports:
+      - 27017:27017
+    image: mongo
