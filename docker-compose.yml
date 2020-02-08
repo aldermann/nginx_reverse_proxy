@@ -20,7 +20,8 @@ services:
       - 8000:8000
     build:
       dockerfile: Dockerfile
-      image: korama_keystone:dev
+      context: ./
+    image: korama_keystone:dev
     depends_on: 
       - mongo
     entrypoint: 
