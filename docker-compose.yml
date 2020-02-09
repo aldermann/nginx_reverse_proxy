@@ -9,22 +9,16 @@ services:
       - ./config/nginx:/etc/nginx/conf.d
       - ./config/certbot/conf:/etc/letsencrypt
       - ./config/certbot/www:/var/www/certbot
-
-  keystone:
-    ports: 
-      - 8000:8000
-    build:
-      dockerfile: Dockerfile
-      context: ./
-    image: korama_keystone:dev
-    depends_on: 
-      - mongo
-    entrypoint: 
-      /bin/sh
-    command: 
-      -c "MONGO_URI=mongodb://mongo:27017 yarn start:dev"
-  
-  mongo:
+    networks: 
+      - korama
+  webserver:
+    image: crccheck/hello-world
     ports:
-      - 27017:27017
-    image: mongo
+      - 8000:8000
+    networks: 
+      korama:
+        aliases: 
+          - keystone
+
+networks: 
+  korama:  
