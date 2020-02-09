@@ -11,7 +11,7 @@ ADD package.json /home/app/
 RUN yarn install && yarn build && yarn cache clean 
 
 FROM node:${NODE_VERSION}-alpine
-WORKDIR /home/node
-COPY --from=build /home/node /home/node
+WORKDIR /home/app
+COPY --from=build /home/app /home/app
 EXPOSE 8000
 CMD ["yarn", "start:prod"]
