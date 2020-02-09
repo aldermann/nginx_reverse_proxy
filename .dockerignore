@@ -1,0 +1,12 @@
+# Ignore for main Docker image
+.vscode
+.idea
+script
+node_modules
+config
+.dockerignore
+.git*
+*-compose.yml
+Dockerfile
+*.md
+*.log
