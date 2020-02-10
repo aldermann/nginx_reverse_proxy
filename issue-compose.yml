@@ -18,7 +18,7 @@ services:
       - nginx_issue
     command: >
       certonly --webroot --webroot-path=/var/www/certbot --email trancongvietan22@gmail.com 
-      --agree-tos --no-eff-email --force-renew -d www.rudias.asia -d rudias.asia -d api.rudias.asia -d admin.rudias.asia
+      --agree-tos --no-eff-email --force-renew -d www.rudias.asia -d rudias.asia -d m.rudias.asia -d pwa.rudias.asia -d beta.rudias.asia
 
   certbot_renew:
     image: certbot/certbot
