@@ -12,7 +12,7 @@ services:
     networks: 
       - korama
   webserver:
-    image: crccheck/hello-world
+    image: rudias-frontend:static
     ports:
       - 8000:8000
     networks: 
@@ -21,4 +21,5 @@ services:
           - keystone
 
 networks: 
-  korama:  
+  rudias:
+    name: rudias
