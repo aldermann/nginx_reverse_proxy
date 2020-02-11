@@ -6,6 +6,7 @@ services:
       - "80:80"
     volumes:
       - ./config/nginx_dev:/etc/nginx/conf.d
+      - ./config/certbot/conf:/etc/letsencrypt
     networks: 
       - rudias-dev
   app:

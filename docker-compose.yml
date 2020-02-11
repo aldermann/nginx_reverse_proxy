@@ -8,7 +8,6 @@ services:
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
       - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
     networks: 
       - rudias
   webserver:
