@@ -4,6 +4,7 @@ services:
     image: nginx
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./config/nginx_dev:/etc/nginx/conf.d
       - ./config/certbot/conf:/etc/letsencrypt
