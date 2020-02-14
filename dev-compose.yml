@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  nginx-dev:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx_dev:/etc/nginx/conf.d
+    networks:
+      - rudias
+  app:
+    image: crccheck/hello-world
+    networks:
+      - rudias
+
+networks:
+  rudias:
+    name: rudias
