@@ -17,5 +17,5 @@ services:
     networks:
       - rudias
 networks: 
-  rudias-dev:
+  rudias:
     name: rudias
