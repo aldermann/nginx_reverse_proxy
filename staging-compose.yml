@@ -6,16 +6,16 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./config/nginx_dev:/etc/nginx/conf.d
+      - ./config/nginx_staging:/etc/nginx/conf.d
       - ./config/certbot/conf:/etc/letsencrypt
     networks: 
-      - rudias-dev
+      - rudias
   app:
     image: crccheck/hello-world
     ports:
       - "8000:8000"
     networks:
-      - rudias-dev
+      - rudias
 networks: 
   rudias-dev:
-    name: rudias-dev
+    name: rudias
