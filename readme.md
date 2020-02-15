@@ -17,5 +17,5 @@
 - Run
 
 ```shell
-docker-compose -f dev-compose.yml up
+docker-compose -f docker-compose.dev.yml up
 ```

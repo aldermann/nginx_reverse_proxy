@@ -9,11 +9,6 @@ services:
       - ./config/nginx_dev:/etc/nginx/conf.d
     networks:
       - rudias
-  app:
-    image: crccheck/hello-world
-    container_name: test
-    networks:
-      - rudias
 
 networks:
   rudias:
