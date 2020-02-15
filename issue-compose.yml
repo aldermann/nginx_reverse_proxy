@@ -1,7 +1,8 @@
 version: "3"
 services:
   nginx_issue:
-    image: nginx
+    image: nginx:1.7-alpine
+    container_name: nginx_issue
     ports:
       - "80:80"
     volumes:
@@ -10,6 +11,7 @@ services:
       - ./config/certbot/www:/var/www/certbot
 
   certbot_issue:
+    container_name: certbot_issue
     image: certbot/certbot
     volumes:
       - ./config/certbot/conf:/etc/letsencrypt
@@ -22,7 +24,8 @@ services:
 
   certbot_renew:
     image: certbot/certbot
+    container_name: certbot_renew
     volumes:
       - ./config/certbot/conf:/etc/letsencrypt
       - ./config/certbot/www:/var/www/certbot
-    command: renew 
+    command: renew

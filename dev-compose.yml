@@ -1,16 +1,17 @@
 version: "3.7"
 services:
   nginx-dev:
-    image: nginx
+    container_name: nginx
+    image: nginx:1.7
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./config/nginx_dev:/etc/nginx/conf.d
     networks:
       - rudias
   app:
     image: crccheck/hello-world
+    container_name: test
     networks:
       - rudias
 
