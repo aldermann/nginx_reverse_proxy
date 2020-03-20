@@ -1,18 +1,21 @@
 version: "3.7"
 services:
-  nginx:
-    image: nginx
-    container_name: nginx
+  server:
+    image: cmd_server:production
+    container_name: cmd_server
+    build:
+      args:
+        - CONFIG_PATH=nginx_no_ssl
+      context: .
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./config/nginx:/etc/nginx/conf.d
-      - ./config/certbot/conf:/etc/letsencrypt
+      - ./cert:/usr/cert
     networks:
-      - rudias
+      - callmeduy
 
 networks:
-  rudias:
-    name: rudias
+  callmeduy:
+    name: callmeduy
     external: true
