@@ -17,9 +17,8 @@ command -v certbot >/dev/null 2>&1 || {
 certbot certonly --standalone \
   --email trancongvietan22@gmail.com \
   --agree-tos --no-eff-email --dry-run \
-  --config-dir ./cert \
-  --work-dir ./letsencrypt/working\
-  --logs-dir ./letsencrypt/log \
   -d callmeduy.com \
   -d admin.callmeduy.com \
   -d www.callmeduy.com
+
+openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 4096
