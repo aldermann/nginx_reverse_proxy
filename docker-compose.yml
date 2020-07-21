@@ -1,21 +1,14 @@
 version: "3.7"
 services:
   server:
-    image: cmd_server:production
-    container_name: cmd_server
-    build:
-      args:
-        - CONFIG_PATH=nginx_no_ssl
-      context: .
+    image: nginx_reverse_proxy:no_ssl
+    container_name: nginx_reverse_proxy
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - ./cert:/usr/cert
-    networks:
-      - callmeduy
+    #volumes:
+      #- /etc/letsencrypt:/etc/letsencrypt
+  service:
+    image: crccheck/hello-world
 
-networks:
-  callmeduy:
-    name: callmeduy
-    external: true
+    

@@ -4,6 +4,7 @@ if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root"
    exit 1
 fi
+
 command -v certbot >/dev/null 2>&1 || {
   echo >&2 "Certbot required but it's not installed. Installing"
   sudo apt-get update

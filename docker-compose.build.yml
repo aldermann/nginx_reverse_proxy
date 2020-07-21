@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  server:
+    image: nginx_reverse_proxy:ssl
+    container_name: nginx_reverse_proxy
+    build:
+      args:
+        - CONFIG_PATH=nginx
+      context: .
+    ports:
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/usr/cert
+  nossl:
+    image: nginx_reverse_proxy:no_ssl
+    container_name: nginx_reverse_proxy_nossl
+    build:
+      args:
+        - CONFIG_PATH=nginx_no_ssl
+      context: .
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/letsencrypt:/usr/cert
