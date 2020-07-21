@@ -15,11 +15,21 @@ command -v certbot >/dev/null 2>&1 || {
   sudo apt-get install certbot
 }
 
-certbot certonly --standalone \
-  --email trancongvietan22@gmail.com \
-  --agree-tos --no-eff-email --dry-run \
-  -d callmeduy.com \
-  -d admin.callmeduy.com \
-  -d www.callmeduy.com
+while getopts ":n" opt; do
+  case ${opt} in
+    n ) 
+      certbot certonly --standalone \
+        --email trancongvietan22@gmail.com \
+        --agree-tos --no-eff-email --dry-run \
+        -d example.com
+      ;;
+    \? )
+      certbot certonly --standalone \
+        --email trancongvietan22@gmail.com \
+        --agree-tos --no-eff-email --force-renewal \
+        -d example.com
+      ;;
+  esac
+done
 
 openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 4096

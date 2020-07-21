@@ -7,4 +7,4 @@ RUN rm /etc/nginx/conf.d/default.conf && \
 
 COPY ./config/$CONFIG_PATH /etc/nginx/conf.d
 
-COPY ./config/route.conf.inc /etc/nginx/conf.d/route.conf.inc
+COPY ./config/*.conf.inc /etc/nginx/conf.d/
